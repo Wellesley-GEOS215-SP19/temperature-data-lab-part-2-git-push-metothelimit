@@ -20,7 +20,7 @@ P_recent = NaN*zeros(length(sta),2);%<-- do the same thing just for values from 
 %using the function StationTempObs_LinearTrend
 for i = 1:18
     station = sta(i)
-    [P_all(i,:),P_recent(i,:)] = StationTempObs_LinearTrend(station, RecentYear);
+    [P_all(i), P_recent(i)] = StationTempObs_LinearTrend(station, RecentYear);
 end
 %% Plot global maps of station locations
 %Example code, showing how to plot the locations of all 18 stations
