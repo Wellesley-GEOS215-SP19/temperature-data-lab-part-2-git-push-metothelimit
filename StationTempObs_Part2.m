@@ -37,8 +37,8 @@ title('Locations of stations with observational temperature data')
 figure(2); clf
 worldmap('World')
 load coastlines
-scatterm(sta,P_recent)
-scatterm(lat,lon,'m.','markersize',15)
+plotm(coastlat,coastlon)
+scatterm(lat,lon,50,P_recent(:,1),'filled')
 
 %Extension option: again using scatterm, plot the difference between the
 %local rate of temperature change (plotted above) and the global mean rate
