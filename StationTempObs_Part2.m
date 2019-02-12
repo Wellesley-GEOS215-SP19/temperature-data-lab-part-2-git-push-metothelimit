@@ -39,6 +39,7 @@ worldmap('World')
 load coastlines
 plotm(coastlat,coastlon)
 scatterm(lat,lon,50,P_recent(:,1),'filled')
+%title('Locations of stations with observational temperature data')
 
 %Extension option: again using scatterm, plot the difference between the
 %local rate of temperature change (plotted above) and the global mean rate
@@ -58,14 +59,19 @@ scatterm(lat,lon,50,P_recent(:,1),'filled')
 %each station
 % Initialize arrays to hold all the output from the for loop you will write
 % below
-%<--
+baseline_model = NaN*zeros(length(sta),2);
+tempAnnMeanAnomaly = NaN*zeros(length(sta),1);
+P = NaN*zeros(length(sta),2);
 
 % Write a for loop that will use the function StationModelProjections to
 % extract from the model projections for each station:
 % 1) the mean and standard deviation of the baseline period
 % (2006-2025) temperatures, 2) the annual mean temperature anomaly, and 3)
 % the slope and y-intercept of the linear trend over the 21st century
-%<--
+for i = 1:18
+    station = sta(i)
+    [baseline_model(i,:), tempAnnMeanAnomaly(i), P(i,:)] = StationModelProjections(station);
+end
 
 %% Plot a global map of the rate of temperature change projected at each station over the 21st century
 %<--
