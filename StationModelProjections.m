@@ -34,7 +34,9 @@ function [baseline_model, tempAnnMeanAnomaly, P] = StationModelProjections(stati
 %% Read and extract the data from your station from the csv file
 filename = ['model' num2str(station_number) '.csv'];
 %Extract the year and annual mean temperature data
-%<--
+stationdata = csvread(filename, 4, 0);
+years = stationdata(:,1)
+tempAnnMean = stationdata(:,2);
 
 %% Calculate the mean and standard deviation of the annual mean temperatures
 %  over the baseline period over the first 20 years of the modeled 21st

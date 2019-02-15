@@ -19,7 +19,7 @@ P_recent = NaN*zeros(length(sta),2);%<-- do the same thing just for values from 
 %observational period and the time from RecentYear (i.e. 1960) to today
 %using the function StationTempObs_LinearTrend
 for i = 1:18
-    station = sta(i)
+    station = sta(i);
     [P_all(i,:),P_recent(i,:)] = StationTempObs_LinearTrend(station, RecentYear);
 end
 %% Plot global maps of station locations
@@ -62,19 +62,19 @@ scatterm(lat,lon,50,P_recent(:,1),'filled')
 baseline_model = NaN*zeros(length(sta),2);
 tempAnnMeanAnomaly = NaN*zeros(length(sta),1);
 P = NaN*zeros(length(sta),2);
-
+disp('--------')
 % Write a for loop that will use the function StationModelProjections to
 % extract from the model projections for each station:
 % 1) the mean and standard deviation of the baseline period
 % (2006-2025) temperatures, 2) the annual mean temperature anomaly, and 3)
 % the slope and y-intercept of the linear trend over the 21st century
 for i = 1:18
-    station = sta(i)
+    station = sta(i);
     [baseline_model(i,:), tempAnnMeanAnomaly(i), P(i,:)] = StationModelProjections(station);
 end
 
 %% Plot a global map of the rate of temperature change projected at each station over the 21st century
-%<--
+
 
 %% Plot a global map of the interannual variability in annual mean temperature at each station
 %as determined by the baseline standard deviation of the temperatures from
