@@ -38,21 +38,22 @@ filename = ['model' num2str(station_number) '.csv'];
 %Extract the year and annual mean temperature data
 stationdata = readtable(filename);
 temps = table2array(stationdata(:,2))
-years = find(stationdata.Year<=2025 & stationdata.Year>=2006)
+years = find(stationdata.Year<=2025 & stationdata.Year>=2006);
 %% Calculate the mean and standard deviation of the annual mean temperatures
 %  over the baseline period over the first 20 years of the modeled 21st
 %  century (2006-2025) - if you follow the template for output values I
 %  provided above, you will want to combine these together into an array
 %  with both values called baseline_model
+
 ann_mean_mean = mean(temps(years));
 ann_mean_std = std(temps(years));
-baseline_model = [ann_mean_mean, ann_mean_std]
+baseline_model = [ann_mean_mean, ann_mean_std];
 %% Calculate the 5-year moving mean smoothed annual mean temperature anomaly over the modeled period
 temps_mean = mean(temps)
 anomaly = temps_mean - ann_mean_mean
 smooth_anomaly = movmean(anomaly,5)%<-- smoothed anomaly
 
 %% Calculate the linear trend in temperature this station over the modeled 21st century period
-P =  polyfit(stationdata.Year,anomaly,1)
+P =  polyfit(years,anomaly,1)
 
 end
