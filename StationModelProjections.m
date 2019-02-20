@@ -44,16 +44,18 @@ years = table2array(stationdata(:,1));
 %  century (2006-2025) - if you follow the template for output values I
 %  provided above, you will want to combine these together into an array
 %  with both values called baseline_model
-
-ann_mean_mean = nanmean(temps(years));
-ann_mean_std = nanstd(temps(years));
+years_baseline = find(stationdata.Year<=2025);
+temps_baseline = tempAnnMean(years_baseline);
+ann_mean_mean = nanmean(temps_baseline);
+ann_mean_std = nanstd(temps_baseline);
 baseline_model = [ann_mean_mean, ann_mean_std];
 %% Calculate the 5-year moving mean smoothed annual mean temperature anomaly over the modeled period
-temps_mean = mean(tempAnnMean)
-anomaly = temps_mean - ann_mean_mean
-smooth_anomaly = movmean(anomaly,5)%<-- smoothed anomaly
+smoothedAnnMean = movmean(tempAnnMean, 5);
+totalTempMean = mean(tempAnnMean);
+tempAnnMeanAnomaly = smoothedAnnMean - totalTempMean
+
 
 %% Calculate the linear trend in temperature this station over the modeled 21st century period
-P =  polyfit(years,anomaly,1);
+P =  polyfit(years,tempAnnMeanAnomaly,1);
 
 end

@@ -60,7 +60,7 @@ scatterm(lat,lon,50,P_recent(:,1),'filled')
 % Initialize arrays to hold all the output from the for loop you will write
 % below
 baseline_model = NaN*zeros(length(sta),2);
-tempAnnMeanAnomaly = NaN*zeros(length(sta),1);
+tempAnnMeanAnomaly = NaN*zeros(94,length(sta));
 P = NaN*zeros(length(sta),2);
 disp('--------')
 % Write a for loop that will use the function StationModelProjections to
@@ -70,7 +70,7 @@ disp('--------')
 % the slope and y-intercept of the linear trend over the 21st century
 for i = 1:18
     station = sta(i);
-    [baseline_model(i,:), tempAnnMeanAnomaly(i), P(i,:)] = StationModelProjections(station);
+    [baseline_model(i,:), tempAnnMeanAnomaly(:,i), P(i,:)] = StationModelProjections(station);
 end
 
 %% Plot a global map of the rate of temperature change projected at each station over the 21st century
