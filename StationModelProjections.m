@@ -52,7 +52,7 @@ baseline_model = [ann_mean_mean, ann_mean_std];
 %% Calculate the 5-year moving mean smoothed annual mean temperature anomaly over the modeled period
 smoothedAnnMean = movmean(tempAnnMean, 5);
 totalTempMean = mean(tempAnnMean);
-tempAnnMeanAnomaly = smoothedAnnMean - totalTempMean
+tempAnnMeanAnomaly = smoothedAnnMean - totalTempMean;
 
 
 %% Calculate the linear trend in temperature this station over the modeled 21st century period
