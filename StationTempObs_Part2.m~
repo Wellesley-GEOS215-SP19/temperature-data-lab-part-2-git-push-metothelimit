@@ -39,7 +39,7 @@ worldmap('World')
 load coastlines
 plotm(coastlat,coastlon)
 scatterm(lat,lon,50,P_recent(:,1),'filled')
-title('Temperature Change 1960-Present');
+title('Projected Rate of Temperature Change 2006-2099');
 
 %title('Locations of stations with observational temperature data')
 
@@ -76,22 +76,17 @@ for i = 1:18
 end
 
 %% Plot a global map of the rate of temperature change projected at each station over the 21st century
-figure(3); clf
+figure(4); clf
 worldmap('World');
-load coastlines
 plotm(coastlat, coastlon);
-scatterm(lat,lon,50,P(:,1),'filled');
+scatterm(lat, lon, 100, P(:,1), 'filled');
 title('Projected Rate of Temperature Change 2006-2099');
+colorbar;
 
 %% Plot a global map of the interannual variability in annual mean temperature at each station
 %as determined by the baseline standard deviation of the temperatures from
 %2005 to 2025
-figure(4); clf
-worldmap('World');
-load coastlines
-plotm(coastlat, coastlon);
-scatterm(lat,lon,50,baseline_model(:,2),'filled');
-title('Projected Interannual Variability in Annual Mean Temperature 2006-2025');
+%<--
 
 %% Calculate the time of emergence of the long-term change in temperature from local variability
 %There are many ways to make this calcuation, but here we will compare the
